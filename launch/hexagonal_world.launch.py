@@ -16,7 +16,8 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import (
     DeclareLaunchArgument,         # Para permitir pasar argumentos desde la terminal
     SetEnvironmentVariable,        # Para modificar variables de entorno
-    IncludeLaunchDescription       # Para incluir otros launch files
+    IncludeLaunchDescription,       # Para incluir otros launch files
+    OpaqueFunction
 )
 
 # Para configurar sustituciones de rutas y argumentos
@@ -30,10 +31,8 @@ from launch.substitutions import (
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
-# -----------------------------------------------
-# Función principal que genera el LaunchDescription
-# -----------------------------------------------
-def generate_launch_description():
+def launch_setup(context, *args, **kwargs):
+    mode = LaunchConfiguration('mode').perform(context)
 
     # -------------------------------------------
     # Variables principales del entorno de simulación
@@ -196,4 +195,35 @@ def generate_launch_description():
     if start_gazebo_ros_image_bridge_cmd:
         l_d.append(start_gazebo_ros_image_bridge_cmd)
 
-    return LaunchDescription(l_d)
+    # Launch path base
+    launch_dir = os.path.join(gazebo_resources, 'launch')
+
+    if mode == 'map':
+        l_d.append(
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(os.path.join(launch_dir, 'mapping.launch.py'))
+            )
+        )
+    elif mode == 'nav':
+        l_d.append(
+            IncludeLaunchDescription(
+                PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation.launch.py'))
+            )
+        )
+    else:
+        raise RuntimeError(f"[hexagonal_world.launch.py] Unknown mode '{mode}', expected 'map' or 'nav'.")
+
+    return l_d
+
+# -----------------------------------------------
+# Función principal que genera el LaunchDescription
+# -----------------------------------------------
+def generate_launch_description():
+    return LaunchDescription([
+        DeclareLaunchArgument(
+            'mode',
+            default_value='map',
+            description='Execution mode: map or nav'
+        ),
+        OpaqueFunction(function=launch_setup)
+    ])
