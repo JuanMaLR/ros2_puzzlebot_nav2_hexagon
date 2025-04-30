@@ -15,6 +15,8 @@ setup(
         (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
         (os.path.join('share', package_name, 'config'), glob(os.path.join('config', '*.[yma]*'))),
         (os.path.join('share', package_name, 'rviz'), glob(os.path.join('rviz', '*.rviz'))),
+        (os.path.join('share', package_name, 'param'), glob(os.path.join('param', '*.yaml'))),
+        (os.path.join('share', package_name, 'map'), glob(os.path.join('map', '*.yaml')) + glob(os.path.join('map', '*.pgm')))
     ]+ [
         (os.path.join('share', package_name, root), [os.path.join(root, file)]) 
         for root, _, files in os.walk('urdf') for file in files
