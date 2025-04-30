@@ -1,0 +1,687 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <!-- Declaración del modelo -->
+  <model name="ros_symbol">
+
+    <!-- Indica que el modelo es estático (no será afectado por la gravedad ni dinámicas físicas) -->
+    <static>true</static>
+
+    <!-- Un modelo debe contener al menos un link -->
+    <link name="symbol">
+
+      <!-- Definición de colisiones (cylinders) para representar los diferentes "pilares" del símbolo ROS -->
+      <!-- Cada collision representa la física (interacciones) de una parte -->
+      
+      <!-- Ejemplo de cilindro en posición (-1.1, -1.1) -->
+      <collision name="one_one">
+        <pose>-1.1 -1.1 0.25 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.15</radius>
+            <length>0.5</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <!-- Representación visual (cómo se ve en la simulación) del mismo cilindro -->
+      <visual name="one_one">
+        <pose>-1.1 -1.1 0.25 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.15</radius>
+            <length>0.5</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>1 1 1 1</ambient>
+          <diffuse>1 1 1 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <!-- Aquí continúan más elementos iguales para "one_two", "one_three", "two_one", etc... -->
+      <!-- Todos siguen la misma estructura: un collision + un visual por cada pieza -->
+      <collision name='one_two'>
+          <pose>-1.1 0 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='one_two'>
+          <pose>-1.1 0 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+        <collision name='one_three'>
+          <pose>-1.1 1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='one_three'>
+          <pose>-1.1 1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+        <collision name='two_one'>
+          <pose>0 -1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='two_one'>
+          <pose>0 -1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+        <collision name='two_two'>
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='two_two'>
+          <pose>0 0 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+        <collision name='two_three'>
+          <pose>0 1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='two_three'>
+          <pose>0 1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+        <collision name='three_one'>
+          <pose>1.1 -1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='three_one'>
+          <pose>1.1 -1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+        <collision name='three_two'>
+          <pose>1.1 0 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='three_two'>
+          <pose>1.1 0 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+        <collision name='three_three'>
+          <pose>1.1 1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name='three_three'>
+          <pose>1.1 1.1 0.25 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.15</radius>
+              <length>0.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>1 1 1 1</ambient>
+            <diffuse>1 1 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+            <emissive>0 0 0 1</emissive>
+          </material>
+        </visual>
+
+      <!-- Elementos adicionales que usan meshes en lugar de figuras primitivas -->
+
+      <!-- Hexágono (mesh) en posición (3.5, 0) -->
+      <collision name="head">
+        <pose>3.5 0 -0.5 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>1.46647</radius> <!-- Basado en la medida de la arista -->
+            <length>2.54</length>      <!-- Un grosor razonable para colisiones planas -->
+          </cylinder>
+          <!--<mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>-->
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <visual name="head">
+        <pose>3.5 0 -0.5 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <collision name='left_hand'>
+        <pose>1.8 2.7 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>1.46647</radius> <!-- Basado en la medida de la arista -->
+            <length>2.54</length>      <!-- Un grosor razonable para colisiones planas -->
+          </cylinder>
+          <!--<mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>-->
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+          <contact>
+            <ode/>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name='left_hand'>
+        <pose>1.8 2.7 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <collision name='right_hand'>
+        <pose>1.8 -2.7 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>1.46647</radius> <!-- Basado en la medida de la arista -->
+            <length>2.54</length>      <!-- Un grosor razonable para colisiones planas -->
+          </cylinder>
+          <!--<mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>-->
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+          <contact>
+            <ode/>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name='right_hand'>
+        <pose>1.8 -2.7 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <collision name='left_foot'>
+        <pose>-1.8 2.7 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>1.46647</radius> <!-- Basado en la medida de la arista -->
+            <length>2.54</length>      <!-- Un grosor razonable para colisiones planas -->
+          </cylinder>
+          <!--<mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>-->
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+          <contact>
+            <ode/>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name='left_foot'>
+        <pose>-1.8 2.7 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <collision name='right_foot'>
+        <pose>-1.8 -2.7 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>1.46647</radius> <!-- Basado en la medida de la arista -->
+            <length>2.54</length>      <!-- Un grosor razonable para colisiones planas -->
+          </cylinder>
+          <!--<mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>-->
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+          <contact>
+            <ode/>
+          </contact>
+        </surface>
+      </collision>
+
+      <visual name='right_foot'>
+        <pose>-1.8 -2.7 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hexagonal_world/meshes/hexagon.dae</uri>
+            <scale>0.55 0.55 0.55</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+          <diffuse>0 1 0 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+
+      <!-- Muro (mesh de wall.dae) -->
+      <!--<collision name="body">
+        <pose>0 0 -0.3 0 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hexagonal_world/meshes/wall.dae</uri>
+            <scale>0.25 0.25 0.25</scale>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>-->
+
+      <collision name="wall_1">
+        <pose>11.4872 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>11.7318 1.27 5.08</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <collision name="wall_2">
+        <pose>5.7436 9.9515 0 0 0 1.0472</pose>
+        <geometry>
+          <box>
+            <size>11.7318 1.27 5.08</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <collision name="wall_3">
+        <pose>-5.7436 9.9515 0 0 0 2.0944</pose>
+        <geometry>
+          <box>
+            <size>11.7318 1.27 5.08</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <collision name="wall_4">
+        <pose>-11.4872 0 0 0 0 3.1416</pose>
+        <geometry>
+          <box>
+            <size>11.7318 1.27 5.08</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <collision name="wall_5">
+        <pose>-5.7436 -9.9515 0 0 0 4.1888</pose>
+        <geometry>
+          <box>
+            <size>11.7318 1.27 5.08</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <collision name="wall_6">
+        <pose>5.7436 -9.9515 0 0 0 5.2360</pose>
+        <geometry>
+          <box>
+            <size>11.7318 1.27 5.08</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact/>
+          <bounce/>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+
+      <!--
+      Ahora tendremos:
+      6 colisiones (wall_1, wall_2, ..., wall_6) → cada una con su propio pose
+      Un solo visual (body) que representa toda la malla → que sigue siendo la pared completa del hexágono
+      Así que no pasa nada malo si el visual se llama body y no coincide con los nombres de los collision.
+      Es normal y totalmente válido.
+      -->
+      <visual name="body">
+        <pose>0 0 -0.3 0 0 -1.5708</pose>
+        <geometry>
+          <mesh>
+            <uri>model://hexagonal_world/meshes/wall.dae</uri>
+            <scale>0.25 0.25 0.25</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+          <specular>0 0 0 1</specular>
+          <emissive>0 0 0 1</emissive>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>puzzlebot_nav2_gz_garden</name>
+  <version>1.0.0</version>
+  <description>Tecnologico de Monterrey 8th semester project for the Robotics and Digital Systems Engineering major. This project consists in using ROS2 Navigation Stack (Nav2) for autonomous navigation of a puzzlebot robot in a student-designed maze.</description>
+  <maintainer email="jujuan27@hotmail.com">Juan Manuel Ledesma Rangel</maintainer>
+  <license>MIT</license>
+
+  <!-- Dependencias para la simulacion con Gazebo y para el robot simulado -->
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>ros2launch</depend>
+  <depend>tf2_ros_py</depend>
+  <depend>python3-numpy</depend>
+  <depend>python3-transforms3d</depend>
+  <depend>rclpy</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher_gui</depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

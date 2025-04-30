@@ -1,0 +1,22 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/juanl/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages",
+        "/home/juanl/ros2_ws/install/ros2_stack_sim_jackal/lib/python3.10/site-packages",
+        "/home/juanl/ros2_ws/install/puzzlebot_gazebo/lib/python3.10/site-packages",
+        "/home/juanl/ros2_ws/install/puzzlebot_description/lib/python3.10/site-packages",
+        "/home/juanl/ros2_ws/build/clearpath_config",
+        "/home/juanl/ros2_ws/install/clearpath_config/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/juanl/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages",
+        "/home/juanl/ros2_ws/install/ros2_stack_sim_jackal/lib/python3.10/site-packages",
+        "/home/juanl/ros2_ws/install/puzzlebot_gazebo/lib/python3.10/site-packages",
+        "/home/juanl/ros2_ws/install/puzzlebot_description/lib/python3.10/site-packages",
+        "/home/juanl/ros2_ws/build/clearpath_config",
+        "/home/juanl/ros2_ws/install/clearpath_config/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!-- Definición estándar de archivo XML -->
+
+<sdf version="1.8">
+  <!-- Inicio del documento SDF versión 1.8 -->
+
+  <world name="default">
+    <!-- Definición de un mundo llamado "default" -->
+
+    <physics name="1ms" type="ignored">
+    <!-- Configuración de la física del mundo -->
+      <max_step_size>0.001</max_step_size>
+      <!-- Tamaño máximo de paso de simulación en segundos (1 ms) -->
+      <real_time_factor>1.0</real_time_factor>
+      <!-- Factor que busca que la simulación avance a tiempo real (1.0 = real time) -->
+    </physics>
+
+    <!-- ========== PLUGINS DEL SISTEMA ========== -->
+    <plugin
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+      <!-- Plugin que administra la física del mundo en Gazebo Sim -->
+    </plugin>
+
+    <plugin
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+      <!-- Plugin que permite enviar comandos del usuario al simulador (ej. mover, rotar) -->
+    </plugin>
+
+    <plugin
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+      <!-- Plugin que transmite el estado de la escena para clientes (GUI, RViz, etc.) -->
+    </plugin>
+
+    <!-- ========== ELEMENTOS INCLUIDOS EN EL MUNDO ========== -->
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground Plane</uri>
+      <!-- Se incluye un modelo base de "Ground Plane" descargado de Gazebo Fuel (plano de piso) -->
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+      <!-- Se incluye un modelo de "Sun" para iluminación ambiental en la simulación -->
+    </include>
+
+    <!-- ========== MODELO PERSONALIZADO ========== -->
+    <model name="hexagonal_world">
+      <static>1</static>
+      <!-- Se define que este modelo será estático (no se moverá ni caerá) -->
+
+      <include>
+        <uri>model://hexagonal_world</uri>
+        <!-- Se incluye el modelo "hexagonal_world" desde el repositorio de modelos locales -->
+        <!-- model:// busca modelos en GZ_SIM_RESOURCE_PATH -->
+        <!-- ¿Qué pasa cuando pongo <uri>model://hexagonal_world</uri>?
+              model:// es un esquema especial (como http:// o file://) que no apunta directamente al sistema de archivos.
+              Cuando Gazebo encuentra model://hexagonal_world, interpreta que debe buscar una carpeta hexagonal_world dentro de las rutas configuradas en GZ_SIM_RESOURCE_PATH.
+              GZ_SIM_RESOURCE_PATH es una variable de entorno que define una o más rutas de carpetas donde buscar:
+                Carpetas de modelos que deben contener:
+                Un archivo model.config
+                Uno (o varios) archivos model.sdf
+                Subcarpetas como meshes/, materials/, etc.
+                Si no encuentra el modelo, Gazebo falla en cargar el objeto en el mundo o incluso puede crashear si depende del modelo para el arranque. -->
+      </include>
+    </model>
+  </world>
+</sdf>
