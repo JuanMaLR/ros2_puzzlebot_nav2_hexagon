@@ -24,3 +24,6 @@ Es importante que al momento de crear un nuevo mapa para el puzzlebot, el nombre
 Por otro lado, antes de ejecutar con un mapa diferente. Hay que ir al archivo puzzlebot.yaml y colocar el nuevo nombre del map file en la linea 292.
 
 Si el mapa se encuentra en la carpeta map no hay que pasar ningun parametro adicional a la ejecucion. El launch file ya lo referencia internamente.  
+
+Para lanzar rqt_reconfigure (edicion dinamica de parametros):
+ros2 run rqt_reconfigure rqt_reconfigure

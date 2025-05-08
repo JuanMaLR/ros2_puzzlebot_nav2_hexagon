@@ -1,4 +1,68 @@
 slam_toolbox:
   ros__parameters:
-    use_sim_time: true
-    resolution: 0.02
+
+    ######### SOLVER #########
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
+
+    ######### MARCOS DE REFERENCIA Y GENERAL #########
+    odom_frame: odom
+    map_frame: map
+    base_frame: base_footprint
+    scan_topic: /scan
+    use_map_saver: true
+    mode: mapping
+    debug_logging: false
+    transform_publish_period: 0.02
+    resolution: 0.03  # 🔍 Más detalle en pasillos de 60 cm (cada celda mide 3 cm)
+    map_update_interval: 2.0  # 🔄 Más frecuente actualización del mapa (mejor para mapas pequeños)
+    tf_buffer_duration: 30.0
+    transform_timeout: 0.2
+    throttle_scans: 1
+    stack_size_to_use: 40000000
+    enable_interactive_mode: true
+
+    ######### SCAN MATCHING #########
+    use_scan_matching: true
+    use_scan_barycenter: true
+    minimum_travel_distance: 0.2  # 🔁 Escanea cada 20 cm, para zonas pequeñas esto evita deformaciones
+    minimum_travel_heading: 0.1   # 🔁 Escanea cada 6° de rotación, ideal para robots de exploración lenta
+    scan_buffer_size: 10
+    scan_buffer_maximum_scan_distance: 4.0  # ⛔ Ignora puntos lejanos que no aportan valor al mapa
+
+    ######### LOOP CLOSURE #########
+    do_loop_closing: true
+    loop_search_maximum_distance: 2.0  # 🔁 Solo intenta cerrar loops cercanos (porque el mapa es pequeño)
+    loop_match_minimum_chain_size: 8
+    loop_match_maximum_variance_coarse: 2.0
+    loop_match_minimum_response_coarse: 0.4
+    loop_match_minimum_response_fine: 0.45
+
+    ######### ALIGNMENT (CORRELATION) #########
+    correlation_search_space_dimension: 0.5
+    correlation_search_space_resolution: 0.01
+    correlation_search_space_smear_deviation: 0.1
+
+    loop_search_space_dimension: 5.0  # 📦 Reduce la búsqueda para evitar falsos positivos en loops
+    loop_search_space_resolution: 0.03
+    loop_search_space_smear_deviation: 0.02
+
+    ######### PENALIZACIÓN (RESTRICCIONES DE MOVIMIENTO) #########
+    distance_variance_penalty: 0.6     # 📉 Penaliza mucho el desplazamiento errático
+    angle_variance_penalty: 1.0        # 📉 Penaliza rotaciones no confiables
+
+    ######### BÚSQUEDA FINA/GRUESA #########
+    fine_search_angle_offset: 0.00349  # ≈ 0.2°
+    coarse_search_angle_offset: 0.349  # ≈ 20°
+    coarse_angle_resolution: 0.0349    # ≈ 2°
+    minimum_angle_penalty: 0.9
+    minimum_distance_penalty: 0.5
+    use_response_expansion: true
+
+    ######### OTROS #########
+    min_pass_through: 2
+    occupancy_threshold: 0.1  # 🔲 Reduce ruido en paredes delgadas
