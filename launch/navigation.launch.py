@@ -12,18 +12,12 @@ def launch_setup(context, *args, **kwargs):
     rviz_file = os.path.join(base_path, 'rviz', "nav2_navigating.rviz")
     map_value = LaunchConfiguration('map_name').perform(context)
 
-    print('map_value', map_value)
-
     map_dir = LaunchConfiguration(
         'map',
         default=os.path.join(
             base_path,
             'map',
             f"{map_value}_map.yaml"))
-
-    print(
-        'map_path', f"{map_value}_map.yaml"
-    )
 
     param_file_name = 'puzzlebot.yaml'
     param_dir = LaunchConfiguration(
