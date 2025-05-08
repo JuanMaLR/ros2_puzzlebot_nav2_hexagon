@@ -18,6 +18,11 @@ def generate_launch_description():
             default_value='true',
             description='Use simulation time'
         ),
+        DeclareLaunchArgument(
+            'slam_params_file',
+            default_value=os.path.join(base_path, 'param', 'slam_toolbox_config.yaml'),
+            description='Full path to the Slam Toolbox configuration file'
+        ),
         # Nav2 Stack
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
@@ -26,11 +31,13 @@ def generate_launch_description():
             launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time')}.items()
         ),
         # SLAM Toolbox - Mapping
+        # online_async - SLAM en tiempo real con optimización asíncrona
+        # Más ligero, mejor para robots con pocos recursos. Optimiza en segundo plano. Ideal para simulación o SBCs como Raspberry Pi / Jetson.
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(slam_toolbox_dir, 'launch', 'online_async_launch.py')
             ),
-            launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time')}.items()
+            launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time'), 'slam_params_file': LaunchConfiguration('slam_params_file')}.items()
         ),
         # RViz
         Node(

@@ -1,22 +1,29 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, OpaqueFunction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from ament_index_python.packages import get_package_share_directory
 import os
 
-def generate_launch_description():
+def launch_setup(context, *args, **kwargs):
     use_sim_time = LaunchConfiguration('use_sim_time', default='false')
     base_path = get_package_share_directory('puzzlebot_nav2_gz_garden')
     rviz_file = os.path.join(base_path, 'rviz', "nav2_navigating.rviz")
+    map_value = LaunchConfiguration('map_name').perform(context)
+
+    print('map_value', map_value)
 
     map_dir = LaunchConfiguration(
         'map',
         default=os.path.join(
             base_path,
             'map',
-            'my_map.yaml'))
+            f"{map_value}_map.yaml"))
+
+    print(
+        'map_path', f"{map_value}_map.yaml"
+    )
 
     param_file_name = 'puzzlebot.yaml'
     param_dir = LaunchConfiguration(
@@ -28,7 +35,7 @@ def generate_launch_description():
 
     nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
 
-    return LaunchDescription([
+    return [
         DeclareLaunchArgument(
             'map',
             default_value=map_dir,
@@ -59,4 +66,9 @@ def generate_launch_description():
             arguments=['-d', rviz_file],
             parameters=[{'use_sim_time': use_sim_time}],
             output='screen'),
+    ]
+
+def generate_launch_description():
+    return LaunchDescription([
+        OpaqueFunction(function=launch_setup)
     ])

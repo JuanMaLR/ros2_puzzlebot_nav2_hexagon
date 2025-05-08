@@ -33,18 +33,24 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def launch_setup(context, *args, **kwargs):
     mode = LaunchConfiguration('mode').perform(context)
+    map_name = LaunchConfiguration('map_name').perform(context)
 
     # -------------------------------------------
     # Variables principales del entorno de simulación
     # -------------------------------------------
 
-    world_file = 'hexagonal_world.world'     # Mundo SDF que se cargará
+    world_file = f"{map_name}_world.world"      # Mundo SDF que se cargará
     robot = 'puzzlebot_jetson_lidar_ed'      # Variante del robot Puzzlebot que se usará
 
     # Posición inicial del robot (coordenadas x, y, orientación yaw)
-    pos_x = '-2.0'
-    pos_y = '-0.5'
-    pos_th = '0.0'
+    if map_name == 'hexagonal':
+        pos_x = '-2.0'
+        pos_y = '-0.5'
+        pos_th = '0.0'
+    elif map_name == 'puzzlebot':
+        pos_x = '-1.2'
+        pos_y = '1.2'
+        pos_th = '0.0'
 
     # Configuración del tiempo y pausa en la simulación
     sim_time = 'true'      # Indica si se debe usar tiempo simulado
@@ -207,11 +213,12 @@ def launch_setup(context, *args, **kwargs):
     elif mode == 'nav':
         l_d.append(
             IncludeLaunchDescription(
-                PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation.launch.py'))
+                PythonLaunchDescriptionSource(os.path.join(launch_dir, 'navigation.launch.py')),
+                launch_arguments={'map_name': LaunchConfiguration('map_name')}.items()
             )
         )
     else:
-        raise RuntimeError(f"[hexagonal_world.launch.py] Unknown mode '{mode}', expected 'map' or 'nav'.")
+        raise RuntimeError(f"[gazebo_world.launch.py] Unknown mode '{mode}', expected 'map' or 'nav'.")
 
     return l_d
 
@@ -224,6 +231,11 @@ def generate_launch_description():
             'mode',
             default_value='map',
             description='Execution mode: map or nav'
+        ),
+        DeclareLaunchArgument(
+            'map_name',
+            default_value='hexagonal',
+            description='Map/world to use: hexagonal or puzzlebot'
         ),
         OpaqueFunction(function=launch_setup)
     ])
